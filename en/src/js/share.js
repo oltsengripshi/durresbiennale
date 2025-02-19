@@ -9,29 +9,34 @@ shareBtn.addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', function() {
     const link = encodeURIComponent(window.location.href);
     const titleElement = document.querySelector('.name');
-    const title = encodeURIComponent(titleElement.textContent.trim());
-    const extendedTitle = title + " | Durres International Biennale of Contemporary Art";
+    const title = titleElement ? encodeURIComponent(titleElement.textContent.trim()) : "";
+    const extendedTitle = `${title} | Durres International Biennale of Contemporary Art`;
     const encodedTitle = encodeURIComponent(extendedTitle);
-    const decodedTitle = decodeURIComponent(encodedTitle);
     const hashtags = encodeURIComponent("durresbiennale,biennale,international");
 
-    const fb = document.querySelector('.facebook');
-    fb.href = `https://www.facebook.com/share.php?u=${link}&quote=${decodedTitle}`;
+    document.querySelector('.facebook').addEventListener('click', () => {
+        window.open(`https://www.facebook.com/share.php?u=${link}&quote=${encodedTitle}`, '_blank');
+    });
 
-    const whatsapp = document.querySelector('.whatsapp');
-    whatsapp.href = `https://api.whatsapp.com/send?text=${decodedTitle}: ${link}`;
+    document.querySelector('.whatsapp').addEventListener('click', () => {
+        window.open(`https://api.whatsapp.com/send?text=${encodedTitle}: ${link}`, '_blank');
+    });
 
-    const twitter = document.querySelector('.twitter');
-    twitter.href = `https://twitter.com/intent/tweet?url=${link}&text=${decodedTitle}&hashtags=${hashtags}`;
+    document.querySelector('.twitter').addEventListener('click', () => {
+        window.open(`https://twitter.com/intent/tweet?url=${link}&text=${encodedTitle}&hashtags=${hashtags}`, '_blank');
+    });
 
-    const linkedIn = document.querySelector('.linkedin');
-    linkedIn.href = `https://www.linkedin.com/sharing/share-offsite/?url=${link}&title=${decodedTitle}`;
+    document.querySelector('.linkedin').addEventListener('click', () => {
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${link}&title=${encodedTitle}`, '_blank');
+    });
 
-    const telegram = document.querySelector('.telegram');
-    telegram.href = `https://telegram.me/share/url?url=${link}&text=${decodedTitle}`;
+    document.querySelector('.telegram').addEventListener('click', () => {
+        window.open(`https://telegram.me/share/url?url=${link}&text=${encodedTitle}`, '_blank');
+    });
 
-    const reddit = document.querySelector('.reddit');
-    reddit.href = `https://reddit.com/submit?url=${link}&title=${decodedTitle}`;
+    document.querySelector('.reddit').addEventListener('click', () => {
+        window.open(`https://reddit.com/submit?url=${link}&title=${encodedTitle}`, '_blank');
+    });
 });
 
 function copyText(button) {
